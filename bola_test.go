@@ -5,6 +5,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/irgifauzi/back-bola/model"
 	"github.com/irgifauzi/back-bola/module"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
