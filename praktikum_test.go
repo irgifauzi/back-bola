@@ -1,4 +1,4 @@
-package _bola
+package _714220035
 
 import (
 	"fmt"
@@ -12,7 +12,15 @@ import (
 
 func TestInsertPemain(t *testing.T) {
 	nama_pemain := "Ronaldo"
-	tim := "Al-nasr"
+	tim := model.Club{
+		Nama_Club: "Barcelona",
+		Liga: "Liga eropa",
+		Tahun_Berdiri: 1899,
+		Stadion: "Olimpiade lluis Companys",
+		Manajer: "Hansi Flick",
+		Jumlah_Pemain: 11,
+		Logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa1EFk-Of9eicV4Bfo-6lwP83tuSoy7eW-BQ&s",
+	}
 	posisi := "Striker"
 	tinggi := 187.0
 	berat := 83.0
@@ -30,7 +38,7 @@ func TestInsertPemain(t *testing.T) {
 }
 
 func TestGetPemainFromID(t *testing.T) {
-	id := "6678f4d89ee2c6d9da780380"
+	id := "668bb46c1d702a161ca07d61"
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		t.Fatalf("error converting id to ObjectID: %v", err)
@@ -48,7 +56,7 @@ func TestGetAll(t *testing.T) {
 }
 
 func TestDeletePemainByID(t *testing.T) {
-	id := "6678f4d89ee2c6d9da780380" // ID data yang ingin dihapus
+	id := "668bb46c1d702a161ca07d61" 
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		t.Fatalf("error converting id to ObjectID: %v", err)
@@ -56,7 +64,7 @@ func TestDeletePemainByID(t *testing.T) {
 
 	err = module.DeletePemainByID(objectID, module.MongoConn, "pemain")
 	if err != nil {
-		t.Fatalf("error calling DeletePresensiByID: %v", err)
+		t.Fatalf("error calling DeletePemainByID: %v", err)
 	}
 
 	_, err = module.GetPemainFromID(objectID, module.MongoConn, "pemain")

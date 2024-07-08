@@ -4,10 +4,12 @@ import (
 	"context"
 	"errors"
 	"fmt"
-
 	"github.com/irgifauzi/back-bola/model"
+	
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -28,8 +30,8 @@ func InsertOneDoc(db string, collection string, doc interface{}) (insertedID int
 	return insertResult.InsertedID
 }
 
-func InsertPemain(db *mongo.Database, col string, nama_pemain string, tim string, posisi string, tinggi float64, berat float64, tanggal_lahir primitive.DateTime, negara string, no_punggung int) (insertedID primitive.ObjectID, err error) {
-	pemain := model.Pemain{
+func InsertPemain(db *mongo.Database, col string, nama_pemain string, tim model.Club, posisi string, tinggi float64, berat float64, tanggal_lahir primitive.DateTime, negara string, no_punggung int) (insertedID primitive.ObjectID, err error) {
+	pemain := model.Pemain	{
 		Nama_Pemain:   nama_pemain,
 		Tim:           tim,
 		Posisi:        posisi,
@@ -76,7 +78,7 @@ func GetPemainFromID(_id primitive.ObjectID, db *mongo.Database, col string) (pe
 	return pemain, nil
 }
 
-func UpdatePemain(db *mongo.Database, col string, id primitive.ObjectID, nama_pemain string, tim string, posisi string, tinggi float64, berat float64, tanggal_lahir primitive.DateTime, negara string, no_punggung int) error {
+func UpdatePemain(db *mongo.Database, col string, id primitive.ObjectID, nama_pemain string, tim model.Club, posisi string, tinggi float64, berat float64, tanggal_lahir primitive.DateTime, negara string, no_punggung int) error {
 	filter := bson.M{"_id": id}
 	update := bson.M{
 		"$set": bson.M{
