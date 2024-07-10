@@ -31,17 +31,16 @@ func InsertOneDoc(db string, collection string, doc interface{}) (insertedID int
 }
 
 func InsertPemain(db *mongo.Database, col string, nama_pemain string, tim model.Club, posisi string, tinggi float64, berat float64, tanggal_lahir primitive.DateTime, negara string, no_punggung int) (insertedID primitive.ObjectID, err error) {
-	pemain := model.Pemain	{
-		Nama_Pemain:   nama_pemain,
-		Tim:           tim,
-		Posisi:        posisi,
-		Tinggi:        tinggi,
-		Berat:         berat,
-		Tanggal_Lahir: tanggal_lahir,
-		Negara:        negara,
-		No_Punggung:   no_punggung,
+	pemain := bson.M{
+		"Nama_Pemain":   nama_pemain,
+		"Tim":           tim,
+		"Posisi":        posisi,
+		"Tinggi":        tinggi,
+		"Berat":         berat,
+		"Tanggal_Lahir": tanggal_lahir,
+		"Negara":        negara,
+		"No_Punggung":   no_punggung,
 	}
-
 	result, err := db.Collection(col).InsertOne(context.Background(), pemain)
 	if err != nil {
 		fmt.Printf("InsertPemain: %v\n", err)
@@ -52,9 +51,9 @@ func InsertPemain(db *mongo.Database, col string, nama_pemain string, tim model.
 }
 
 func GetAllDataPemain(db *mongo.Database, col string) (data []model.Pemain) {
-	gem := db.Collection(col)
+	player := db.Collection(col)
 	filter := bson.M{}
-	cursor, err := gem.Find(context.TODO(), filter)
+	cursor, err := player.Find(context.TODO(), filter)
 	if err != nil {
 		fmt.Println("GetAllDataPemain: ", err)
 	}
