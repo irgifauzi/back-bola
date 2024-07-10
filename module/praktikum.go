@@ -4,8 +4,9 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"log"
+
 	"github.com/irgifauzi/back-bola/model"
-	
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -93,21 +94,20 @@ func UpdatePemain(db *mongo.Database, col string, id primitive.ObjectID, nama_pe
 	}
 	result, err := db.Collection(col).UpdateOne(context.Background(), filter, update)
 	if err != nil {
-		fmt.Printf("UpdatePemain: %v\n", err)
+		log.Printf("UpdatePemain: %v", err)
 		return err
 	}
 	if result.ModifiedCount == 0 {
-		err = errors.New("no data has been changed with the specified ID")
-		return err
+		return errors.New("no data change by ID")
 	}
 	return nil
 }
 
 func DeletePemainByID(_id primitive.ObjectID, db *mongo.Database, col string) error {
-	karyawan := db.Collection(col)
+	Pemain := db.Collection(col)
 	filter := bson.M{"_id": _id}
 
-	result, err := karyawan.DeleteOne(context.TODO(), filter)
+	result, err := Pemain.DeleteOne(context.TODO(), filter)
 	if err != nil {
 		return fmt.Errorf("error deleting data for ID %s: %s", _id, err.Error())
 	}

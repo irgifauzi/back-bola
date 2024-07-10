@@ -38,16 +38,16 @@ func TestInsertPemain(t *testing.T) {
 }
 
 func TestGetPemainFromID(t *testing.T) {
-	id := "668bb46c1d702a161ca07d61"
+	id := "668e488005df6fa1b2719599"
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		t.Fatalf("error converting id to ObjectID: %v", err)
 	}
-	biodata, err := module.GetPemainFromID(objectID, module.MongoConn, "pemain")
+	pema, err := module.GetPemainFromID(objectID, module.MongoConn, "pemain")
 	if err != nil {
 		t.Fatalf("error calling GetPresensiFromID: %v", err)
 	}
-	fmt.Println(biodata)
+	fmt.Println(pema)
 }
 
 func TestGetAll(t *testing.T) {
@@ -56,7 +56,7 @@ func TestGetAll(t *testing.T) {
 }
 
 func TestDeletePemainByID(t *testing.T) {
-	id := "668bb46c1d702a161ca07d61" 
+	id := "668e488005df6fa1b2719599" 
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		t.Fatalf("error converting id to ObjectID: %v", err)
