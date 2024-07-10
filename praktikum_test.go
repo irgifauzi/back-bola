@@ -3,7 +3,6 @@ package _714220035
 import (
 	"fmt"
 	"testing"
-	"time"
 
 	"github.com/irgifauzi/back-bola/model"
 	"github.com/irgifauzi/back-bola/module"
@@ -24,12 +23,11 @@ func TestInsertPemain(t *testing.T) {
 	posisi := "Striker"
 	tinggi := 187.0
 	berat := 83.0
-	tanggalLahir := time.Date(1985, time.February, 5, 0, 0, 0, 0, time.UTC)
-	tanggalLahirPrimitive := primitive.NewDateTimeFromTime(tanggalLahir)
+	tanggal_lahir := "09-06-1985"
 	negara := "Portugal"
 	no_punggung := 7
 
-	insertedID, err := module.InsertPemain(module.MongoConn, "pemain", nama_pemain, tim, posisi, tinggi, berat, tanggalLahirPrimitive, negara, no_punggung)
+	insertedID, err := module.InsertPemain(module.MongoConn, "pemain", nama_pemain, tim, posisi, tinggi, berat, tanggal_lahir, negara, no_punggung)
 	if err != nil {
 		t.Errorf("Error inserting data: %v", err)
 		return
