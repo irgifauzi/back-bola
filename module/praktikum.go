@@ -92,11 +92,15 @@ func UpdatePemain(db *mongo.Database, col string, id primitive.ObjectID, nama_pe
 			"no_punggung":   no_punggung,
 		},
 	}
+
+	log.Printf("Filter: %v, Update: %v", filter, update)
+
 	result, err := db.Collection(col).UpdateOne(context.Background(), filter, update)
 	if err != nil {
 		log.Printf("UpdatePemain: %v", err)
 		return err
 	}
+	log.Printf("ModifiedCount: %v", result.ModifiedCount)
 	if result.ModifiedCount == 0 {
 		return errors.New("no data change by ID")
 	}
