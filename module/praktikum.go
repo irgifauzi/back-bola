@@ -33,14 +33,14 @@ func InsertOneDoc(db string, collection string, doc interface{}) (insertedID int
 
 func InsertPemain(db *mongo.Database, col string, nama_pemain string, tim model.Club, posisi string, tinggi float64, berat float64, tanggal_lahir string, negara string, no_punggung int) (insertedID primitive.ObjectID, err error) {
 	pemain := bson.M{
-		"Nama_Pemain":   nama_pemain,
-		"Tim":           tim,
-		"Posisi":        posisi,
-		"Tinggi":        tinggi,
-		"Berat":         berat,
-		"Tanggal_Lahir": tanggal_lahir,
-		"Negara":        negara,
-		"No_Punggung":   no_punggung,
+		"nama_pemain":   nama_pemain,
+		"tim":           tim,
+		"posisi":        posisi,
+		"tinggi":        tinggi,
+		"berat":         berat,
+		"tanggal_lahir": tanggal_lahir,
+		"negara":        negara,
+		"no_punggung":   no_punggung,
 	}
 	result, err := db.Collection(col).InsertOne(context.Background(), pemain)
 	if err != nil {
