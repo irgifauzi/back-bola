@@ -22,7 +22,7 @@ type Pemain struct {
 	Posisi        string             `bson:"posisi,omitempty" json:"posisi,omitempty"`
 	Tinggi        float64            `bson:"tinggi,omitempty" json:"tinggi,omitempty"`
 	Berat         float64            `bson:"berat,omitempty" json:"berat,omitempty"`
-	Tanggal_Lahir string 			`bson:"tanggal_lahir,omitempty" json:"tanggal_lahir,omitempty"`
+	Tanggal_Lahir string 			 `bson:"tanggal_lahir,omitempty" json:"tanggal_lahir,omitempty"`
 	Negara        string             `bson:"negara,omitempty" json:"negara,omitempty"`
 	No_Punggung   int                `bson:"no_punggung,omitempty" json:"no_punggung,omitempty"`
 }
